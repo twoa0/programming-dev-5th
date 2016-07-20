@@ -20,4 +20,5 @@ from blog import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.post_list),
+    url(r'^sum2/(?P<x>[\d/]+)/$', views.mysum2)
 ]
