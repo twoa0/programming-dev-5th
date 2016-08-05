@@ -10,7 +10,7 @@ Class-based views
     1. Add an import:  from other_app.views import Home
     2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
 Including another URLconf
-    1. Import the include() function: from django.conf.urls import url, include
+    1. Import the include() function: from django.conf.urls import url, includer
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
@@ -20,5 +20,7 @@ from blog import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.post_list),
-    url(r'^sum2/(?P<x>[\d/]+)/$', views.mysum2)
+    url(r'^(?P<pk>\d+)/$', views.post_detail),
+    url(r'^(?P<post_pk>\d+)/comments/new/$', views.comment_new),
+    url(r'^(?P<post_pk>\d+)/comments/(?P<pk>\d+)/edit/$', views.comment_edit),
 ]

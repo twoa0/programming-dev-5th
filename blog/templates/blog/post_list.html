@@ -2,10 +2,9 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1.0,minimumscale=
-1.0,maximum-scale=1.0,user-scalable=no" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimumscale=1.0,maximum-scale=1.0,user-scalable=no" />
 <title>P.rogramming Blog</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 <style>
 body {
     padding-top: 60px;
@@ -38,14 +37,21 @@ body {
 
 <div class="container">
     <div class="jumbotron">
-        <h1>P.rogramming</h1>
-        <p>This is a template showcasing the optional theme stylesheet included in Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.</p>
+        <h1>P.rogramming</h1><br>
+        <p>
+          {% for post in post_list %}
+            <a href='{% url "blog.views.post_detail" post.pk %}'>{{post.title}}<br>
+            {{post.author}}<br>
+            {{post.created_at}}<br>></a><br><br>
+          {% endfor %}
+        </p>
     </div>
 </div>
 
 <div class="footer">
     <div class="container">
-        <p class="text-muted">Place sticky footer content here.</p>
+        <p class="text-muted">
+        </p>
     </div>
 </div>
 

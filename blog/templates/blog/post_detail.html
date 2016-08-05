@@ -1,0 +1,81 @@
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Starter Template for Bootstrap</title>
+
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="starter-template.css" rel="stylesheet">
+
+
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">P-rogramming</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Post</a></li>
+            <li><a href="#about">Detail</a></li>
+            <li><a href="#contact">Lee A Young</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+<br><br><br><br><br>
+    <div class="container">
+      <div class="starter-template">
+        <center>
+        <h1>제목: {{post_detail.title}}</h1>
+        <p class="lead">
+<br>
+        <h2>내용: {{post.content}}/<h2>
+<br>
+        <h3>작성자: {{post.author}}<br>
+            작성시간: {{post.created_at}}<br>
+            태그:
+                {% for tag in post.tag_set.all %}
+                    {{tag.name}}
+                {% endfor %}<br>
+            위치: {{post.lnglat}}<br></h3>
+        </center>
+<br><br>
+        </p>
+      </div>
+    </div>
+    <center>
+        <p><h1>댓글</h1><br>
+          {% for comment in post.comment_set.all %}
+            <h3>댓글 내용: {{comment.message}}<br>
+                댓글 작성자: {{comment.author}}<br></h3><br>
+          {% empty %}
+            첫 번째 댓글의 주인공이 되어주세요.
+            <a href ='{% url "blog.views.comment_new" post.pk %}'>
+            댓글 쓰기</a>
+          {% endfor %}
+        </p>
+    </center>
